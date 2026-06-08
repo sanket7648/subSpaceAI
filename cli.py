@@ -13,7 +13,7 @@ models.Base.metadata.create_all(bind=engine)
 
 async def run_pipeline():
     print("\n==================================================")
-    print("      Skanjo AI Outreach Pipeline - CLI          ")
+    print("      AI Outreach Pipeline - CLI          ")
     print("==================================================\n")
     
     # User only needs to enter the domain
