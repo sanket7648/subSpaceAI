@@ -1,11 +1,9 @@
 import asyncio
 import os
 
-# Import your existing database and models
 from app.database import SessionLocal, engine
 from app import models
 
-# Import your existing, fully-tested services!
 from app.services.ocean_service import get_lookalike_companies
 from app.services.prospeo_service import enrich_leads_bulk, search_decision_makers
 from app.services.brevo_service import send_outreach_email
@@ -141,14 +139,14 @@ async def run_pipeline():
             
             new_run.status = "completed_emails_sent"
             db.commit()
-            print(f"\n✅ Pipeline Complete! Successfully sent {success_count} emails.")
+            print(f"\nPipeline Complete! Successfully sent {success_count} emails.")
         else:
             new_run.status = "stopped_at_checkpoint"
             db.commit()
-            print("\n🛑 Emails cancelled. Pipeline safely stopped at checkpoint.")
+            print("\n Emails cancelled. Pipeline safely stopped at checkpoint.")
 
     except Exception as e:
-        print(f"\n❌ [Error] Pipeline failed: {str(e)}")
+        print(f"\n [Error] Pipeline failed: {str(e)}")
         new_run.status = f"failed: {str(e)}"
         db.commit()
     finally:
